@@ -120,3 +120,76 @@ impl Board {
     }
 
 }
+
+
+#[cfg(test)]
+mod test{
+    #![allow(unused_results)]
+    use crate::board::Board;
+    use crate::player::Player;
+     #[test]
+    fn test_horizontal_win_by_X(){
+        let mut b: Board = Board::new();
+        b.fill_cell(0,0, Player::X);
+        b.fill_cell(0,1, Player::X);
+        b.fill_cell(0,2, Player::X);
+        let expected = Ok(Player::X);
+        assert_eq!(b.check_horizontal(Player::X), expected);
+    }
+
+    #[test]
+    fn test_horizontal_win_by_O(){
+        let mut b: Board = Board::new();
+        b.fill_cell(0,0, Player::O);
+        b.fill_cell(0,1, Player::O);
+        b.fill_cell(0,2, Player::O);
+        let expected = Ok(Player::O);
+        assert_eq!(b.check_horizontal(Player::O), expected);
+    }
+
+    
+    #[test]
+    fn test_vertical_win_by_X(){
+        let mut b: Board = Board::new();
+        b.fill_cell(0,0, Player::X);
+        b.fill_cell(1,0, Player::X);
+        b.fill_cell(2,0, Player::X);
+        let expected = Ok(Player::X);
+        assert_eq!(b.check_vertical(Player::X), expected);
+    }
+
+    #[test]
+    fn test_vertical_win_by_O(){
+        let mut b: Board = Board::new();
+        b.fill_cell(0,0, Player::O);
+        b.fill_cell(1,0, Player::O);
+        b.fill_cell(2,0, Player::O);
+        let expected = Ok(Player::O);
+        assert_eq!(b.check_vertical(Player::O), expected);
+    }
+
+    #[test]
+    fn test_diagonal_win_by_X(){
+        let mut b: Board = Board::new();
+        b.fill_cell(0,0, Player::X);
+        b.fill_cell(1,1, Player::X);
+        b.fill_cell(2,2, Player::X);
+        let expected = Ok(Player::X);
+        assert_eq!(b.check_diagonal(Player::X), expected);
+    }
+
+    #[test]
+    fn test_diagonal_win_by_O(){
+        let mut b: Board = Board::new();
+        b.fill_cell(0,0, Player::O);
+        b.fill_cell(1,1, Player::O);
+        b.fill_cell(2,2, Player::O);
+        let expected = Ok(Player::O);
+        assert_eq!(b.check_diagonal(Player::O), expected);
+    }
+
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
