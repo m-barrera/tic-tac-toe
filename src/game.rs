@@ -1,15 +1,17 @@
 use std::io;
 use crate::{player::{Player}, board::Board};
+/// Enum implementation of GameResults
 pub enum GameResult {
     WIN,
     DRAW, 
     PROGRESS
 }
-
+/// Game instance implementation holding the game Board
 pub struct Game {
     board: Board,
 }
 
+/// Game struct func implementation block
 impl Game  {
     pub fn new() -> Game {
         return Game {
@@ -17,7 +19,8 @@ impl Game  {
         }
     }
 
-
+    /// Gets the desired position of the cell which needs to be filled
+    /// returns a Result<(usize,uisze), String> -> Ok(row,column)
     fn get_fill_position(&self) -> Result<(usize,usize), String>{
         let mut row:String = String::new();
         let mut column: String = String::new();
@@ -49,7 +52,8 @@ impl Game  {
         return Ok((row_to_int, column_to_int));
     }
 
-
+    /// Chekcs the game status 
+    /// return an Result<(Player,GameResult), GameResult> -> Ok(Player) wind condition was found
     fn check_game_status(&self)-> Result<(Player, GameResult), GameResult>{
         for player in [Player::X, Player::O] {
            match self.board.check_horizontal(player){ 
@@ -72,6 +76,8 @@ impl Game  {
         return Err(GameResult::DRAW);
     }
 
+    /// Switches the turn to the next player
+    /// Returns and instance for next player
     pub fn next_turn (&self,current_player: Player) -> Player {
         match current_player {
             Player::O => return Player::X,
@@ -79,6 +85,7 @@ impl Game  {
         }
     }
 
+    /// Game Start function 
     pub fn start(mut self){
         println!("Welcome to Rust based tic tac toe!");
         println!("You are the player O");
