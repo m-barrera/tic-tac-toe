@@ -7,6 +7,7 @@ mod utils {
     pub mod printer;
 }
 
+/// Game Entrypoint
 fn main() {
     let game: Game = Game::new();
     game.start();
