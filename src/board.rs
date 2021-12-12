@@ -187,9 +187,5 @@ mod test{
         let expected = Ok(Player::O);
         assert_eq!(b.check_diagonal(Player::O), expected);
     }
-
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
+    
 }
